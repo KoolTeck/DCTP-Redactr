@@ -1,37 +1,58 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Redacter</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- redacter form field starts -->
-    <h2>Word Redacter</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ex rem alias nam tempore harum voluptatibus placeat repudiandae dolor praesentium! Sapiente rerum cum aut. Alias iure molestias velit quis nobis!</p>
-        <div class="container">
-            <form>
-                <div class="control">
-                    <label for="user-text">Input Text</label>
-                    <input type="text" name="" id="user-text">
-                </div>
-                <div class="control">
-                    <label for="redact-word">Input word to be redacted</label>
-                    <input type="text" name="" id="redact-word">
-                </div>
-                <div class="control">
-                    <label for="redact-char">Select redact pattern(style)</label>
-                    <select name="" id="redact-char">
-                        <option value="*">*</option>
-                        <option value="_">_</option>
-                        <option value="-">-</option>
-                        <option value="+">+</option>
-                        <option value="?">?</option>
-                        <option value="!">!</option>
-                    </select>
-                </div>
-                <button class="btn">Submit</button>
-            </form>
+
+    <div class="container">
+      <div class="header">
+        <h2>Word Redacter</h2>
+        <p>
+          Safely share contents on social media by scrambling portions of a text
+          you don’t want the world to read/see
+        </p>
+      </div>
+      <form>
+        <div class="control">
+          <label for="user-text">Input or paste Text</label>
+          <textarea type="text" name="" id="user-text"></textarea>
         </div>
+        <div class="control">
+          <label for="redact-word">Input word to be scrambled</label>
+          <input
+            type="text"
+            name=""
+            id="redact-word"
+            placeholder="use space for multiple words or sentence"
+          />
+        </div>
+        <div class="control">
+          <label for="redact-char">Select redact pattern(style)</label>
+          <select name="" id="redact-char">
+            <option disabled>select pattern</option>
+            <option value="*">****</option>
+            <option value="_">____</option>
+            <option value="-">----</option>
+            <option value="+">++++</option>
+            <option value="?">????</option>
+            <option value="!">!!!!</option>
+            <option value="!">&&&&</option>
+          </select>
+        </div>
+        <p class="error"></p>
+        <button class="btn">Redact Now</button>
+      </form>
+    </div>
+    <div class="modal"></div>
     <!-- redacter form field ends -->
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
