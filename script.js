@@ -1,6 +1,7 @@
 // global vars
 const redactForm = document.querySelector("form");
 const modal = document.querySelector(".modal");
+const preLoader = document.querySelector(".loader");
 let redactOutput = "";
 let matchedWords = 0;
 let scannedWords = 0;
@@ -21,8 +22,12 @@ redactForm.addEventListener("submit", (e) => {
     errorInfo.textContent = "The word/s to redact is required";
     errorInfo.style.display = "block";
   } else {
-    redact(redactText, redactWords, redactSymbol);
-    handleRedactOutput();
+    preLoader.style.display = "block";
+    setTimeout(() => {
+      redact(redactText, redactWords, redactSymbol);
+      handleRedactOutput();
+      preLoader.style.display = "none";
+    }, 0);
     redactOutput = "";
     matchedWords = 0;
     scannedWords = 0;
@@ -47,17 +52,20 @@ function redact(texts, words, symbol) {
   const textArr = texts.split(" ");
   scannedWords = textArr.length;
   for (const word of wordsArr) {
-    textArr.forEach((text, i) => {
+    let i = 0;
+    for (const text of textArr) {
       if (text.toLowerCase() === word.toLowerCase()) {
         matchedWords++;
         textArr[i] = symbol.padEnd(word.length, symbol);
         scrambledChars += textArr[i].length;
       }
-    });
+      i++;
+    }
   }
   redactOutput = textArr.join(" ");
   const endTime = performance.now();
   timeTaken = (endTime - startTime) / 1000;
+
   modal.innerHTML = `
   <div class="stats">
     <span class="material-symbols-outlined close">close</span>
@@ -73,10 +81,16 @@ function redact(texts, words, symbol) {
       <span class="material-symbols-outlined copy">
         content_copy
       </span>
+      <span class="tooltip">
+        copied! 👌
+          <span class="material-symbols-outlined">
+            arrow_drop_down
+          </span>
+      </span>
       </div>
       <div class="stat-data">
       <span class="material-symbols-outlined">document_scanner</span>
-        <span></span> Scanned Words:   ${scannedWords}
+        <span>Scanned Words:   ${scannedWords}</span> 
       </div>
       <div class="stat-data">
          <span class="material-symbols-outlined">
@@ -106,6 +120,7 @@ function handleRedactOutput() {
   const closeBtn = modal.querySelector(".close");
   const copyBtn = modal.querySelector(".copy");
   const redactText = modal.querySelector(".redacted-text .text");
+  const tooltip = modal.querySelector(".tooltip");
   modal.style.top = 0;
   closeBtn.addEventListener("click", () => {
     modal.style.top = "-1000";
@@ -114,5 +129,15 @@ function handleRedactOutput() {
   copyBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(redactText.textContent);
     copyBtn.style.backgroundColor = "#ebf3fb";
+    copyBtn.style.top = "21px";
+    copyBtn.style.right = "17px";
+    tooltip.style.display = "block";
+
+    setTimeout(() => {
+      copyBtn.style.backgroundColor = "#ebf3fb96";
+      copyBtn.style.top = "0";
+      copyBtn.style.right = "13px";
+      tooltip.style.display = "none";
+    }, 1500);
   });
 }
