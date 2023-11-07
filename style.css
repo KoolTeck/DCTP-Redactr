@@ -228,4 +228,9 @@ footer {
   .btn {
     width: 54%;
   }
+
+  .control textarea {
+      height: 100px;
+      margin-top: 10px;
+  }
 }
