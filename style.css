@@ -111,7 +111,7 @@ textarea {
   position: absolute;
   background-color: rgba(36, 36, 92, 0.75);
   width: 100%;
-  top: -700;
+  top: -1000;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -189,6 +189,11 @@ textarea {
 
 .redacted-text .copy:active {
   color: #fff;
+}
+
+footer {
+    text-align: center;
+
 }
 
 @media screen and (max-width: 850px) {

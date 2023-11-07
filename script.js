@@ -93,7 +93,7 @@ function redact(texts, words, symbol) {
         <span class="material-symbols-outlined">
            hourglass_bottom
         </span>
-        <span>Time Taken:   ${timeTaken}secs.</span> 
+        <span>Time Taken:   ${timeTaken.toFixed(3)}secs.</span> 
       </div>
   </div>`;
 }
@@ -108,7 +108,7 @@ function handleRedactOutput() {
   const redactText = modal.querySelector(".redacted-text .text");
   modal.style.top = 0;
   closeBtn.addEventListener("click", () => {
-    modal.style.top = "-700";
+    modal.style.top = "-1000";
   });
 
   copyBtn.addEventListener("click", () => {
