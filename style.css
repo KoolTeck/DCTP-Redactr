@@ -160,6 +160,7 @@ textarea {
   margin: 18px 0;
   padding: 15px;
   position: relative;
+  width: 100%;
 }
 
 .redacted-text p {
@@ -175,10 +176,10 @@ textarea {
 }
 
 .redacted-text .copy {
-  right: 0;
+  right: 13px;
   position: absolute;
   top: 0;
-  padding: 5px;
+  padding: 3px;
   border-radius: 50%;
 }
 
@@ -188,12 +189,52 @@ textarea {
 }
 
 .redacted-text .copy:active {
-  color: #fff;
+  color: #a0a0a0;
+}
+
+.loader {
+  border: 0px solid #ffffff;
+  border-top: 2px solid #24245c;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 footer {
-    text-align: center;
+  text-align: center;
+  margin-bottom: 12px;
+}
 
+.tooltip {
+  background-color: rgba(36, 36, 92, 0.75);
+  color: #ffffff;
+  font-size: 11px;
+  padding: 2px;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  right: 17px;
+  display: none;
+  & span {
+    position: absolute;
+    left: 16px;
+    top: 8px;
+    color: rgba(36, 36, 92, 0.75);
+  }
 }
 
 @media screen and (max-width: 850px) {
@@ -228,9 +269,13 @@ footer {
   .btn {
     width: 54%;
   }
+ 
 
   .control textarea {
       height: 100px;
       margin-top: 10px;
+  }
+  .stats .stat-data {
+    width: 82%;
   }
 }
